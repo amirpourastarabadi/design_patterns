@@ -7,7 +7,8 @@ require __DIR__ . '/Employees/DevOps.php';
 require __DIR__ . '/Employees/Programmer.php';
 require __DIR__ . '/Publishers/Publisher.php';
 require __DIR__ . '/Publishers/LogPublisher.php';
-require __DIR__ . '/Logger.php';
+require __DIR__ . '/Log/LogLevels.php';
+require __DIR__ . '/Log/Logger.php';
 
 $developers = [new Programmer('me'), new Programmer('you'), new Programmer('some body else')];
 $devops = [new DevOps('he'), new DevOps('she')];
@@ -17,26 +18,27 @@ $logger = new Logger;
 
 subscribeAllEmployees($developers, $devops, $cto, $logger);
 
-$logger->log('critical', 'some message');
+$logger->log(LogLevels::CRITICAL, 'first critical message');
 
-$logger->unsubscribe('critical', $devops[0]);
+$logger->unsubscribe(LogLevels::CRITICAL, $devops[0]);
 
-$logger->log('critical', 'another message');
+$logger->log(LogLevels::CRITICAL, 'second critical message');
+$logger->log(LogLevels::BUG, 'bug message');
 
 // helper functions
 function subscribeAllEmployees(array $developers, array $devops, array $cto, Logger $logger)
 {
     foreach ($developers as $developer) {
-        $logger->subscribe('bug', $developer);
+        $logger->subscribe(LogLevels::BUG, $developer);
     }
 
     foreach ($devops as $dev) {
-        $logger->subscribe('bug', $dev);
-        $logger->subscribe('critical', $dev);
+        $logger->subscribe(LogLevels::BUG, $dev);
+        $logger->subscribe(LogLevels::CRITICAL, $dev);
     }
 
     foreach ($cto as $ct) {
-        $logger->subscribe('critical', $ct);
-        $logger->subscribe('emergency', $ct);
+        $logger->subscribe(LogLevels::CRITICAL, $ct);
+        $logger->subscribe(LogLevels::EMERGENCY, $ct);
     }
 }
