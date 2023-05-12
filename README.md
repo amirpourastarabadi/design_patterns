@@ -1,6 +1,10 @@
-# Repository Structure
+# Catalog Branch Structure
 
-## Branches:
-- main: just contains this repo structure
-- catalog: contains each pattern **diagram**, **intent**, **pros**, and **cons**
-- programming language(exp: **php**): contains implementation of each pattern in branch name language
+## Each directory contains definition of directory name design pattern.
+- problem that pattern going to solve
+- solution
+- diagram
+- sudo code
+
+## To check the specific language implementation you can checkout to your interested language branch
+
