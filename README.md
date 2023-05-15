@@ -1,6 +1,5 @@
-# Repository Structure
+# Guid
 
-## Branches:
-- main: just contains this repo structure
-- catalog: contains each pattern **diagram**, **intent**, **pros**, and **cons**
-- programming language(exp: **php**): contains implementation of each pattern in branch name language
+- Each pattern implemented in it dir with it's name in PHP programming language.
+- Each pattern implementation exists in before and after of using the pattern.
+- The intent, problem, and solution of patterns exists in catalog branch.
